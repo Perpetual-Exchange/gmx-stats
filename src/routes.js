@@ -167,7 +167,7 @@ export default function routes(app) {
           <head>
               <meta http-equiv="X-UA-Compatible" content="IE=edge" />
               <meta charset="utf-8" />
-              <title>Rollex analytics</title>
+              <title>REX analytics</title>
               <meta name="viewport" content="width=device-width, initial-scale=1">
               <link rel="icon" type="image/png" href="/favicon.png" />
               ${cssAssetsTag}

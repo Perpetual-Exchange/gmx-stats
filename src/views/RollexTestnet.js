@@ -60,7 +60,7 @@ import useChartDomain from '../hooks/useChartDomain';
 
 const NOW = Math.floor(Date.now() / 1000)
 
-function Avalanche(props) {
+function OdexTestnet(props) {
   const DEFAULT_GROUP_PERIOD = 86400
   const [groupPeriod] = useState(DEFAULT_GROUP_PERIOD)
   const [dataRange, setDataRange] = useState({ fromValue: moment().subtract(3, 'month').toDate(), toValue: null })
@@ -70,12 +70,12 @@ function Avalanche(props) {
   const from = dataRange.fromValue ? Math.floor(+new Date(dataRange.fromValue) / 1000) : undefined
   const to = dataRange.toValue ? Math.floor(+new Date(dataRange.toValue) / 1000) : NOW
 
-  const params = { from, to, groupPeriod, chainName: 'avalanche' }
+  const params = { from, to, groupPeriod, chainName: 'rollexTestnet' }
 
   const [fundingRateData, fundingRateLoading] = useFundingRateData(params)
 
   const [volumeData, volumeLoading] = useVolumeData(params)
-  const [totalVolumeData, totalVolumeLoading] = useVolumeData({ chainName: 'avalanche' })
+  const [totalVolumeData, totalVolumeLoading] = useVolumeData({ chainName: 'rollexTestnet' })
   // const [volumeData, volumeLoading] = useVolumeDataFromServer(params)
   // const [totalVolume] = useTotalVolumeFromServer()
   const [totalVolume, totalVolumeDelta] = useMemo(() => {
@@ -88,7 +88,7 @@ function Avalanche(props) {
   }, [totalVolumeData])
 
   const [feesData, feesLoading] = useFeesData(params)
-  const [totalFeesData, totalFeesLoading] = useFeesData({ chainName: 'avalanche' })
+  const [totalFeesData, totalFeesLoading] = useFeesData({ chainName: 'rollexTestnet' })
   const [totalFees, totalFeesDelta] = useMemo(() => {
     if (!totalFeesData) {
       return []
@@ -99,7 +99,7 @@ function Avalanche(props) {
   }, [totalFeesData])
 
   const [glpData, glpLoading] = useGlpData(params)
-  const [totalGlpData, totalGlpLoading] = useGlpData({ chainName: 'avalanche' })
+  const [totalGlpData, totalGlpLoading] = useGlpData({ chainName: 'rollexTestnet' })
   const [totalAum, totalAumDelta] = useMemo(() => {
     if (!totalGlpData) {
       return []
@@ -116,7 +116,7 @@ function Avalanche(props) {
   const [minGlpPrice, maxGlpPrice] = useChartDomain(glpPerformanceData, ["syntheticPrice", "glpPrice", "glpPlusFees", "lpBtcPrice", "lpEthPrice", "lpAvaxPrice"], [0.4, 1.7])
 
   const [tradersData, tradersLoading] = useTradersData(params)
-  const [totalTradersData, totalTradersLoading] = useTradersData({ chainName: 'avalanche' })
+  const [totalTradersData, totalTradersLoading] = useTradersData({ chainName: 'rollexTestnet' })
   const [openInterest, openInterestDelta] = useMemo(() => {
     if (!totalTradersData) {
       return []
@@ -127,7 +127,7 @@ function Avalanche(props) {
   }, [totalTradersData])
 
   const [usersData, usersLoading] = useUsersData(params)
-  const [totalUsersData, totalUsersLoading] = useUsersData({ chainName: 'avalanche' })
+  const [totalUsersData, totalUsersLoading] = useUsersData({ chainName: 'rollexTestnet' })
   const [totalUsers, totalUsersDelta] = useMemo(() => {
     if (!totalUsersData) {
       return [null, null]
@@ -177,14 +177,14 @@ function Avalanche(props) {
 
   return (
     <div className="Home">
-      <div className="page-title-section">
+      <div className="page-title-section" style={{overflow: "visible"}}>
         <div className="page-title-block">
-          <h1>Analytics / Avalanche</h1>
+          <h1>Analytics / Rollex Testnet</h1>
           {lastSubgraphBlock && lastBlock &&
             <p className={cx('page-description', { warning: isObsolete })}>
               {isObsolete && "Data is obsolete. "}
               Updated {moment(lastSubgraphBlock.timestamp * 1000).fromNow()}
-              &nbsp;at block <a rel="noreferrer" target="_blank" href={`https://snowtrace.io/block/${lastSubgraphBlock.number}`}>{lastSubgraphBlock.number}</a>
+              &nbsp;at block <a rel="noreferrer" target="_blank" href={`https://odx-zkevm-testnet.zkevm.opside.info/block/${lastSubgraphBlock.number}`}>{lastSubgraphBlock.number}</a>
             </p>
           }
           {
@@ -225,7 +225,7 @@ function Avalanche(props) {
         </div>
         <div className="chart-cell stats">
           {totalAum ? <>
-            <div className="total-stat-label">GLP Pool</div>
+            <div className="total-stat-label">RLP Pool</div>
             <div className="total-stat-value">
               {formatNumber(totalAum, { currency: true })}
               {!!totalAumDelta &&
@@ -280,7 +280,7 @@ function Avalanche(props) {
           />
         </div>
         <div className="chart-cell">
-          <ChartWrapper title="GLP AUM & Rlp Supply" loading={glpLoading} data={glpData} csvFields={[{ key: 'aum' }, { key: 'glpSupply' }]}>
+          <ChartWrapper title="RLP AUM & Rlp Supply" loading={glpLoading} data={glpData} csvFields={[{ key: 'aum' }, { key: 'glpSupply' }]}>
             <ResponsiveContainer width="100%" height={CHART_HEIGHT}>
               <LineChart data={glpData} syncId="syncGlp">
                 <CartesianGrid strokeDasharray="10 10" />
@@ -292,7 +292,7 @@ function Avalanche(props) {
                   contentStyle={{ textAlign: 'left' }}
                 />
                 <Legend />
-                <Line isAnimationActive={false} type="monotone" strokeWidth={2} unit="$" dot={false} dataKey="aum" stackId="a" name="GLP AUM" stroke={COLORS[0]} />
+                <Line isAnimationActive={false} type="monotone" strokeWidth={2} unit="$" dot={false} dataKey="aum" stackId="a" name="RLP AUM" stroke={COLORS[0]} />
                 <Line isAnimationActive={false} type="monotone" strokeWidth={2} dot={false} dataKey="glpSupply" stackId="a" name="Rlp Supply" stroke={COLORS[1]} />
               </LineChart>
             </ResponsiveContainer>
@@ -326,13 +326,13 @@ function Avalanche(props) {
                 <Legend />
                 <Line dot={false} isAnimationActive={false} type="monotone" unit="%" dataKey="performanceLpBtcCollectedFees" name="% LP BTC-USDC" stroke={COLORS[2]} />
                 <Line dot={false} isAnimationActive={false} type="monotone" unit="%" dataKey="performanceLpEthCollectedFees" name="% LP ETH-USDC" stroke={COLORS[4]} />
-                <Line dot={false} isAnimationActive={false} type="monotone" unit="%" dataKey="performanceLpAvaxCollectedFees" name="% LP AVAX-USDC" stroke={COLORS[3]} />
+                {/* <Line dot={false} isAnimationActive={false} type="monotone" unit="%" dataKey="performanceLpAvaxCollectedFees" name="% LP AVAX-USDC" stroke={COLORS[3]} /> */}
                 <Line dot={false} isAnimationActive={false} type="monotone" unit="%" dataKey="performanceSyntheticCollectedFees" name="% Index" stroke={COLORS[0]} />
               </LineChart>
             </ResponsiveContainer>
             <div className="chart-description">
               <p>
-                <span style={{color: COLORS[0]}}>% of Index</span> is Rlp with fees / Index Price * 100. Index is a basket 16.6% AVAX, 16.6% BTC, 16.6% ETH and 50% USDC rebalanced once&nbsp;a&nbsp;day
+                <span style={{color: COLORS[0]}}>% of Index</span> is Rlp with fees / Index Price * 100. Index is a basket 25% BTC, 25% ETH ,25% USDT and 25% USDC rebalanced once&nbsp;a&nbsp;day
                   <br/>
                 <span style={{color: COLORS[4]}}>% of LP TOKEN-USDC</span> is Rlp Price with fees / LP TOKEN-USDC * 100<br/>
               </p>
@@ -363,13 +363,13 @@ function Avalanche(props) {
                 <Line isAnimationActive={false} type="monotone" unit="$" strokeWidth={2} dot={false} dataKey="glpPlusFees" name="Rlp w/ fees" stroke={COLORS[3]} />
                 <Line isAnimationActive={false} type="monotone" unit="$" strokeWidth={1} dot={false} dataKey="lpBtcPrice" name="LP BTC-USDC" stroke={COLORS[2]} />
                 <Line isAnimationActive={false} type="monotone" unit="$" strokeWidth={1} dot={false} dataKey="lpEthPrice" name="LP ETH-USDC" stroke={COLORS[4]} />
-                <Line isAnimationActive={false} type="monotone" unit="$" strokeWidth={1} dot={false} dataKey="lpAvaxPrice" name="LP AVAX-USDC" stroke={COLORS[5]} />
+                {/* <Line isAnimationActive={false} type="monotone" unit="$" strokeWidth={1} dot={false} dataKey="lpAvaxPrice" name="LP AVAX-USDC" stroke={COLORS[5]} /> */}
               </LineChart>
             </ResponsiveContainer>
             <div className="chart-description">
               <p>
-                <span style={{color: COLORS[3]}}>Rlp with fees</span> is based on GLP share of fees received and excluding esREX rewards<br/>
-                <span style={{color: COLORS[2]}}>Index Price</span> is a basket 16.6% AVAX, 16.6% BTC, 16.6% ETH and 50% USDC rebalanced once&nbsp;a&nbsp;day
+                <span style={{color: COLORS[3]}}>Rlp with fees</span> is based on RLP share of fees received and excluding esREX rewards<br/>
+                <span style={{color: COLORS[2]}}>Index Price</span> is a  basket 25% BTC, 25% ETH ,25% USDT and 25% USDC rebalanced once&nbsp;a&nbsp;day
               </p>
             </div>
           </ChartWrapper>
@@ -451,7 +451,7 @@ function Avalanche(props) {
               yaxisDataKey="ETH"
               yaxisTickFormatter={yaxisFormatterPercent}
               tooltipFormatter={tooltipFormatterPercent}
-              items={[{ key: 'WETH.e' }, { key: 'WBTC.e' }, { key: 'AVAX' }, { key: 'MIM' }, { key: 'USDC' }, { key: 'USDC.e' }]}
+              items={[{ key: 'ETH' }, { key: 'USDT' }, { key: 'BTC' }, { key: 'USDC' }]}
               type="Line"
               yaxisDomain={[0, 90 /* ~87% is a maximum yearly borrow rate */]}
             />
@@ -470,7 +470,7 @@ function Avalanche(props) {
               items={[
                 { key: 'uniqueSwapCount', name: 'Swaps'},
                 { key: 'uniqueMarginCount', name: 'Margin trading'},
-                { key: 'uniqueMintBurnCount', name: 'Mint & Burn GLP' }
+                { key: 'uniqueMintBurnCount', name: 'Mint & Burn RLP' }
               ]}
               type="Composed"
             />
@@ -509,4 +509,4 @@ function Avalanche(props) {
   );
 }
 
-export default Avalanche;
+export default OdexTestnet;

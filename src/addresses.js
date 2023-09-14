@@ -1,6 +1,7 @@
 export const BSC = 56
 export const ARBITRUM = 42161
 export const AVALANCHE = 43114
+export const ROLLEXTESTNET = 57000
 
 export const addresses = {
     [BSC]: {
@@ -34,7 +35,17 @@ export const addresses = {
         RewardReader: '0x04Fc11Bd28763872d143637a7c768bD96E44c1b6',
         GLP: '0x01234181085565ed162a948b6a5e88758CD7c7b8',
         GlpManager: '0xe1ae4d4b06A5Fe1fc288f6B4CD72f9F8323B107F'
+    },
+
+    [ROLLEXTESTNET]: {
+        GMX: '0x0d0610DeD1a17AabA6528258488cd2243f94666d',
+        ETH: '0x5eD4813824E5e2bAF9BBC211121b21aB38E02522',
+        BTC: '0xfA600253bB6fE44CEAb0538000a8448807e50c85',
+        RewardReader: '0x2Da84746E7AB4351bd07F8f1AB2387BEf218F177',
+        GLP: '0x1C1e43bE7F0f5175DF59ad922F56120545AED78C',
+        GlpManager: '0xDC72632f1fc4159E75533B7B6c2BdA92d1644639'
     }
+    
 }
 
 export function getAddress(chainId, key) {

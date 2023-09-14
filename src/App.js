@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch, NavLink, Redirect } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import cx from "classnames";
-import Arbitrum from "./views/Arbitrum";
+// import Arbitrum from "./views/Arbitrum";
 import Referrals from "./views/Referrals";
-import Avalanche from "./views/Avalanche";
+import RollexTestnet from "./views/RollexTestnet";
+// import Avalanche from "./views/Avalanche";
 import Trading from "./views/Trading";
 import "./App.css";
 import logoIcon from "./img/logo_GMX.svg";
@@ -36,14 +37,14 @@ function AppHeaderLinks({ mode, small, clickCloseIcon }) {
         </div>
       )}
       <div className="App-header-link-container">
-        <NavLink
-          to="/arbitrum"
+        {/* <NavLink
+          to="/rollexTestnet"
           exact
           className="nav-link"
           activeClassName="active"
         >
-          Arbitrum
-        </NavLink>
+          RollexTestnet
+        </NavLink> */}
       </div>
       <div className="App-header-link-container">
         <NavLink to="/avalanche" className="nav-link">
@@ -117,7 +118,7 @@ const App = () => {
                 )}
               </div>
               <a
-                href="https://app.rollex.finance"
+                href="https://odx.finance"
                 target="_blank"
                 className="nav-logo"
                 rel="noreferrer"
@@ -127,21 +128,21 @@ const App = () => {
                   src={mode == "dark" ? darkLogoIcon : lightLogoIcon}
                 />
               </a>
-              <NavLink
-                to="/arbitrum"
+              {/* <NavLink
+                to="/rollexTestnet"
                 exact
                 className="nav-link"
                 activeClassName="active"
               >
-                Arbitrum
-              </NavLink>
-              <NavLink to="/avalanche" className="nav-link">
+                RollexTestnet
+              </NavLink> */}
+              {/* <NavLink to="/avalanche" className="nav-link">
                 Avalanche
-              </NavLink>
+              </NavLink> */}
             </div>
             <div className="nav-right">
               <a
-                href="https://app.rollex.finance"
+                href="https://odx.finance"
                 target="_blank"
                 className="nav-link"
                 rel="noreferrer"
@@ -149,7 +150,7 @@ const App = () => {
                 APP
               </a>
               <a
-                href="https://docs.rollex.finance/"
+                href="https://docs.odx.finance/"
                 target="_blank"
                 className="nav-link"
                 rel="noreferrer"
@@ -182,18 +183,18 @@ const App = () => {
           </AnimatePresence>
           <div className="content">
             <Route path="/" exact>
-              <Redirect to="/arbitrum" />
+              <Redirect to="/rollexTestnet" />
             </Route>
             <Route
               exact
-              path="/arbitrum"
-              render={(props) => <Arbitrum {...props} mode={mode} />}
+              path="/rollexTestnet"
+              render={(props) => <RollexTestnet {...props} mode={mode} />}
             />
-            <Route
+            {/* <Route
               exact
               path="/avalanche"
               render={(props) => <Avalanche {...props} mode={mode} />}
-            />
+            /> */}
             <Route
               exact
               path="/referrals/:chainName"
