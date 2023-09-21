@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
 
-import { ARBITRUM, AVALANCHE, ROLLEXTESTNET } from './addresses'
+import { ARBITRUM, AVALANCHE, ROLLUXTESTNET } from './addresses'
 
 const apolloOptions = {
   query: {
@@ -15,7 +15,7 @@ const apolloOptions = {
 const SATSUMA_KEY = process.env.SATSUMA_KEY || "3b2ced13c8d9"; // "default" key
 
 function getSubgraphUrl(name) {
-  if(name.includes('rollexTestnet')){
+  if(name.includes('rolluxTestnet')){
     return `https://subgraph.satsuma-prod.com/name/rollex/${name}`
   }
   return `https://subgraph.satsuma-prod.com/${SATSUMA_KEY}/gmx/${name}/api`
@@ -33,7 +33,7 @@ const avalancheStatsClient = new ApolloClient({
   defaultOptions: apolloOptions
 })
 
-const rollexTestnetStatsClient = new ApolloClient({
+const rolluxTestnetStatsClient = new ApolloClient({
   link: new HttpLink({ uri: getSubgraphUrl("odx-zkevm-stats"), fetch }),
   cache: new InMemoryCache(),
   defaultOptions: apolloOptions
@@ -44,8 +44,8 @@ function getStatsClient(chainId) {
     return arbitrumStatsClient
   } else if (chainId === AVALANCHE) {
     return avalancheStatsClient
-  }else if (chainId === ROLLEXTESTNET) {
-    return rollexTestnetStatsClient
+  }else if (chainId === ROLLUXTESTNET) {
+    return rolluxTestnetStatsClient
   }
   throw new Error(`Invalid chainId ${chainId}`)
 }
@@ -62,8 +62,8 @@ const avalanchePricesClient = new ApolloClient({
   defaultOptions: apolloOptions
 })
 
-const rollexTestnetPricesClient = new ApolloClient({
-  link: new HttpLink({ uri: getSubgraphUrl("rex-rollexTestnet-prices"), fetch }),
+const rolluxTestnetPricesClient = new ApolloClient({
+  link: new HttpLink({ uri: getSubgraphUrl("rex-rolluxTestnet-prices"), fetch }),
   cache: new InMemoryCache(),
   defaultOptions: apolloOptions
 })
@@ -73,8 +73,8 @@ function getPricesClient(chainId) {
     return arbitrumPricesClient
   } else if (chainId === AVALANCHE) {
     return avalanchePricesClient
-  }else if (chainId === ROLLEXTESTNET) {
-    return rollexTestnetPricesClient
+  }else if (chainId === ROLLUXTESTNET) {
+    return rolluxTestnetPricesClient
   } else {
     throw new Error(`Invalid chainId ${chainId}`)
   }

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import cx from "classnames";
 // import Arbitrum from "./views/Arbitrum";
 import Referrals from "./views/Referrals";
-import RollexTestnet from "./views/RollexTestnet";
+import RolluxTestnet from "./views/RolluxTestnet";
 // import Avalanche from "./views/Avalanche";
 import Trading from "./views/Trading";
 import "./App.css";
@@ -38,12 +38,12 @@ function AppHeaderLinks({ mode, small, clickCloseIcon }) {
       )}
       <div className="App-header-link-container">
         {/* <NavLink
-          to="/rollexTestnet"
+          to="/rolluxTestnet"
           exact
           className="nav-link"
           activeClassName="active"
         >
-          RollexTestnet
+          RolluxTestnet
         </NavLink> */}
       </div>
       <div className="App-header-link-container">
@@ -129,12 +129,12 @@ const App = () => {
                 />
               </a>
               {/* <NavLink
-                to="/rollexTestnet"
+                to="/rolluxTestnet"
                 exact
                 className="nav-link"
                 activeClassName="active"
               >
-                RollexTestnet
+                RolluxTestnet
               </NavLink> */}
               {/* <NavLink to="/avalanche" className="nav-link">
                 Avalanche
@@ -183,12 +183,12 @@ const App = () => {
           </AnimatePresence>
           <div className="content">
             <Route path="/" exact>
-              <Redirect to="/rollexTestnet" />
+              <Redirect to="/rolluxTestnet" />
             </Route>
             <Route
               exact
-              path="/rollexTestnet"
-              render={(props) => <RollexTestnet {...props} mode={mode} />}
+              path="/rolluxTestnet"
+              render={(props) => <RolluxTestnet {...props} mode={mode} />}
             />
             {/* <Route
               exact

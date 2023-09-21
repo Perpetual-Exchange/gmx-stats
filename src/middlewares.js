@@ -37,7 +37,9 @@ export function csp(req, res, next) {
       "https://subgraph.satsuma-prod.com",
       "https://subgraph.odx.finance",
       "https://subgraph.rollex.finance",
-      "https://pre-alpha-zkrollup-rpc.opside.network"
+      "https://pre-alpha-zkrollup-rpc.opside.network",
+      "https://rollux.graph.rpc.tanenbaum.io",
+      "https://rpc-tanenbaum.rollux.com"
     ]
   }
   if (!IS_PRODUCTION) {

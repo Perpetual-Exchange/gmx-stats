@@ -5,7 +5,7 @@ import fetch from 'cross-fetch';
 import * as ethers from 'ethers'
 
 import { fillPeriods } from './helpers'
-import { addresses, getAddress, ARBITRUM, AVALANCHE, ROLLEXTESTNET } from './addresses'
+import { addresses, getAddress, ARBITRUM, AVALANCHE, ROLLUXTESTNET } from './addresses'
 
 const BigNumber = ethers.BigNumber
 const formatUnits = ethers.utils.formatUnits
@@ -18,7 +18,7 @@ import Token from '../abis/v1/Token.json'
 const providers = {
   arbitrum: new JsonRpcProvider('https://arb1.arbitrum.io/rpc'),
   avalanche: new JsonRpcProvider('https://api.avax.network/ext/bc/C/rpc'),
-  rollexTestnet: new JsonRpcProvider('https://rpc-tanenbaum.rollux.com')
+  rolluxTestnet: new JsonRpcProvider('https://rpc-tanenbaum.rollux.com')
 }
 
 function getProvider(chainName) {
@@ -32,7 +32,7 @@ function getChainId(chainName) {
   const chainId = {
     arbitrum: ARBITRUM,
     avalanche: AVALANCHE,
-    rollexTestnet: ROLLEXTESTNET
+    rolluxTestnet: ROLLUXTESTNET
   }[chainName]
   if (!chainId) {
     throw new Error(`Unknown chain ${chainName}`)
@@ -169,7 +169,7 @@ export const tokenSymbols = {
   '0x5ed4813824e5e2baf9bbc211121b21ab38e02522': 'ETH',
   '0xcac0759160d57a33d332ed36a555c10957694407': 'TSYS',
   '0x66a1b915b55bde2fa3402ed59bb5af19879c1178': 'DAI',
-  '0x9d973bac12bb62a55be0f9f7ad201eea4f9b8428': 'USDT',
+  // '0x9d973bac12bb62a55be0f9f7ad201eea4f9b8428': 'USDT',
 }
 
 function getTokenDecimals(token) {
@@ -220,7 +220,7 @@ const knownSwapSources = {
     '0xdef1c0ded9bec7f1a1670819833240f027b25eff': '0x',
     '0xe547cadbe081749e5b3dc53cb792dfaea2d02fd2': 'GMX PositionExecutor' // Position Executor
   },
-  rollexTestnet: {
+  rolluxTestnet: {
     '0xaf6bd805616b65ca819b3068cdb715de611f4eed': 'REX OrderBook',
     '0x16ab9c1825b86e8b8ce3a3f1d7d863a982d95cb3': 'REX Router',
     '0x3516af9fd0e9f012fc05631cbc15f2751505646c': 'REX FastPriceFeed', // FastPriceFeed
@@ -309,12 +309,12 @@ export function useGraph(querySource, { subgraph = null, subgraphUrl = null, cha
     subgraphUrl = `https://subgraph.satsuma-prod.com/3b2ced13c8d9/gmx/${subgraph}/api`;
   }
 
-  if(chainName==='rollexTestnet'){
+  if(chainName==='rolluxTestnet'){
     subgraphUrl = ` https://subgraph.rollex.finance/subgraphs/name/odx/odx-zkevm-stats`;
   }
   */
 
-  subgraphUrl = ` https://subgraph.rollex.finance/subgraphs/name/rollex/rollex-zkevm-stats`;
+  subgraphUrl = `https://rollux.graph.rpc.tanenbaum.io/subgraphs/name/rollex/rollex-rt-stats`;
 
   const client = new ApolloClient({
     link: new HttpLink({ uri: subgraphUrl, fetch }),
@@ -1096,7 +1096,7 @@ export function useGlpPerformanceData(glpData, feesData, { from = FIRST_DATE_TS,
     let ETH_WEIGHT = 0
     let AVAX_WEIGHT = 0
 
-    if (chainName === "rollexTestnet") {
+    if (chainName === "rolluxTestnet") {
       BTC_WEIGHT = 0.166
       ETH_WEIGHT = 0.166
       // AVAX_WEIGHT = 0.166

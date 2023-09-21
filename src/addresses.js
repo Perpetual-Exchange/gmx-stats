@@ -1,7 +1,7 @@
 export const BSC = 56
 export const ARBITRUM = 42161
 export const AVALANCHE = 43114
-export const ROLLEXTESTNET = 57000
+export const ROLLUXTESTNET = 57000
 
 export const addresses = {
     [BSC]: {
@@ -37,7 +37,7 @@ export const addresses = {
         GlpManager: '0xe1ae4d4b06A5Fe1fc288f6B4CD72f9F8323B107F'
     },
 
-    [ROLLEXTESTNET]: {
+    [ROLLUXTESTNET]: {
         GMX: '0x0d0610DeD1a17AabA6528258488cd2243f94666d',
         ETH: '0x5eD4813824E5e2bAF9BBC211121b21aB38E02522',
         BTC: '0xfA600253bB6fE44CEAb0538000a8448807e50c85',

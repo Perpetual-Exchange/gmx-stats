@@ -70,12 +70,12 @@ function OdexTestnet(props) {
   const from = dataRange.fromValue ? Math.floor(+new Date(dataRange.fromValue) / 1000) : undefined
   const to = dataRange.toValue ? Math.floor(+new Date(dataRange.toValue) / 1000) : NOW
 
-  const params = { from, to, groupPeriod, chainName: 'rollexTestnet' }
+  const params = { from, to, groupPeriod, chainName: 'rolluxTestnet' }
 
   const [fundingRateData, fundingRateLoading] = useFundingRateData(params)
 
   const [volumeData, volumeLoading] = useVolumeData(params)
-  const [totalVolumeData, totalVolumeLoading] = useVolumeData({ chainName: 'rollexTestnet' })
+  const [totalVolumeData, totalVolumeLoading] = useVolumeData({ chainName: 'rolluxTestnet' })
   // const [volumeData, volumeLoading] = useVolumeDataFromServer(params)
   // const [totalVolume] = useTotalVolumeFromServer()
   const [totalVolume, totalVolumeDelta] = useMemo(() => {
@@ -88,7 +88,7 @@ function OdexTestnet(props) {
   }, [totalVolumeData])
 
   const [feesData, feesLoading] = useFeesData(params)
-  const [totalFeesData, totalFeesLoading] = useFeesData({ chainName: 'rollexTestnet' })
+  const [totalFeesData, totalFeesLoading] = useFeesData({ chainName: 'rolluxTestnet' })
   const [totalFees, totalFeesDelta] = useMemo(() => {
     if (!totalFeesData) {
       return []
@@ -99,7 +99,7 @@ function OdexTestnet(props) {
   }, [totalFeesData])
 
   const [glpData, glpLoading] = useGlpData(params)
-  const [totalGlpData, totalGlpLoading] = useGlpData({ chainName: 'rollexTestnet' })
+  const [totalGlpData, totalGlpLoading] = useGlpData({ chainName: 'rolluxTestnet' })
   const [totalAum, totalAumDelta] = useMemo(() => {
     if (!totalGlpData) {
       return []
@@ -116,7 +116,7 @@ function OdexTestnet(props) {
   const [minGlpPrice, maxGlpPrice] = useChartDomain(glpPerformanceData, ["syntheticPrice", "glpPrice", "glpPlusFees", "lpBtcPrice", "lpEthPrice", "lpAvaxPrice"], [0.4, 1.7])
 
   const [tradersData, tradersLoading] = useTradersData(params)
-  const [totalTradersData, totalTradersLoading] = useTradersData({ chainName: 'rollexTestnet' })
+  const [totalTradersData, totalTradersLoading] = useTradersData({ chainName: 'rolluxTestnet' })
   const [openInterest, openInterestDelta] = useMemo(() => {
     if (!totalTradersData) {
       return []
@@ -127,7 +127,7 @@ function OdexTestnet(props) {
   }, [totalTradersData])
 
   const [usersData, usersLoading] = useUsersData(params)
-  const [totalUsersData, totalUsersLoading] = useUsersData({ chainName: 'rollexTestnet' })
+  const [totalUsersData, totalUsersLoading] = useUsersData({ chainName: 'rolluxTestnet' })
   const [totalUsers, totalUsersDelta] = useMemo(() => {
     if (!totalUsersData) {
       return [null, null]
@@ -179,7 +179,7 @@ function OdexTestnet(props) {
     <div className="Home">
       <div className="page-title-section" style={{overflow: "visible"}}>
         <div className="page-title-block">
-          <h1>Analytics / Rollex Testnet</h1>
+          <h1>Analytics / Rollux Testnet</h1>
           {lastSubgraphBlock && lastBlock &&
             <p className={cx('page-description', { warning: isObsolete })}>
               {isObsolete && "Data is obsolete. "}
@@ -332,7 +332,7 @@ function OdexTestnet(props) {
             </ResponsiveContainer>
             <div className="chart-description">
               <p>
-                <span style={{color: COLORS[0]}}>% of Index</span> is Rlp with fees / Index Price * 100. Index is a basket 25% BTC, 25% ETH ,25% USDT and 25% USDC rebalanced once&nbsp;a&nbsp;day
+                <span style={{color: COLORS[0]}}>% of Index</span> is Rlp with fees / Index Price * 100. Index is a basket 20% BTC, 30% ETH ,30% DAI and 20% SYS rebalanced once a day
                   <br/>
                 <span style={{color: COLORS[4]}}>% of LP TOKEN-USDC</span> is Rlp Price with fees / LP TOKEN-USDC * 100<br/>
               </p>
@@ -369,7 +369,7 @@ function OdexTestnet(props) {
             <div className="chart-description">
               <p>
                 <span style={{color: COLORS[3]}}>Rlp with fees</span> is based on RLP share of fees received and excluding esREX rewards<br/>
-                <span style={{color: COLORS[2]}}>Index Price</span> is a  basket 25% BTC, 25% ETH ,25% USDT and 25% USDC rebalanced once&nbsp;a&nbsp;day
+                <span style={{color: COLORS[2]}}>Index Price</span> is a basket 20% BTC, 30% ETH ,30% DAI and 20% SYS rebalanced once a day
               </p>
             </div>
           </ChartWrapper>
