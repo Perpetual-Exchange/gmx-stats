@@ -32,7 +32,7 @@ function AppHeaderLinks({ mode, small, clickCloseIcon }) {
             className="App-header-link-main"
             to="/"
           >
-            <img src={logoIcon} alt="GMX Logo" />
+            <img src={logoIcon} alt="RoMEX Logo" />
           </NavLink>
         </div>
       )}
@@ -118,7 +118,7 @@ const App = () => {
                 )}
               </div>
               <a
-                href="https://odx.finance"
+                href="https://romex.finance"
                 target="_blank"
                 className="nav-logo"
                 rel="noreferrer"
@@ -142,7 +142,7 @@ const App = () => {
             </div>
             <div className="nav-right">
               <a
-                href="https://odx.finance"
+                href="https://romex.finance"
                 target="_blank"
                 className="nav-link"
                 rel="noreferrer"
@@ -150,7 +150,7 @@ const App = () => {
                 APP
               </a>
               <a
-                href="https://docs.odx.finance/"
+                href="https://docs.romex.finance/"
                 target="_blank"
                 className="nav-link"
                 rel="noreferrer"
