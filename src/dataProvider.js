@@ -167,7 +167,7 @@ export const tokenSymbols = {
   // OdxTestnet
   '0xfa600253bb6fe44ceab0538000a8448807e50c85': 'BTC',
   '0x5ed4813824e5e2baf9bbc211121b21ab38e02522': 'ETH',
-  '0xcac0759160d57a33d332ed36a555c10957694407': 'TSYS',
+  '0xcac0759160d57a33d332ed36a555c10957694407': 'SYS',
   '0x66a1b915b55bde2fa3402ed59bb5af19879c1178': 'DAI',
   // '0x9d973bac12bb62a55be0f9f7ad201eea4f9b8428': 'USDT',
 }

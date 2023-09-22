@@ -451,7 +451,7 @@ function OdexTestnet(props) {
               yaxisDataKey="ETH"
               yaxisTickFormatter={yaxisFormatterPercent}
               tooltipFormatter={tooltipFormatterPercent}
-              items={[{ key: 'ETH' }, { key: 'USDT' }, { key: 'BTC' }, { key: 'USDC' }]}
+              items={[{ key: 'ETH' }, { key: 'BTC' }, { key: 'USDC' }, { key: 'SYS' }, { key: 'DAI' }]}
               type="Line"
               yaxisDomain={[0, 90 /* ~87% is a maximum yearly borrow rate */]}
             />

@@ -180,7 +180,7 @@ label + input {
 }
 
 .App.dark .chart-cell.stats {
-  border: 1px solid #e0ee8d;
+  border: 0.5px solid #e0ed8d99;
   background: transparent;
   border-radius: 0;
   text-align: left;
@@ -651,7 +651,7 @@ a:visited {
   border: 0 !important;
   background-color: transparent;
   width: 200px;
-  color: #80ae0e;
+  color: #e0ed8d;
 }
 
 .date-range-items {
@@ -776,7 +776,7 @@ a:visited {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border: 0.5px solid #e0ee8d;
+  border: 0.5px solid #e0ed8d99;
   padding: 30px;
   border-radius: 0;
   margin: 30px 0;
